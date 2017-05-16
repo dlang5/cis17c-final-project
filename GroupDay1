@@ -1,1 +1,129 @@
 
+//Group: Jesse, Dennis, David
+//CSC-17C Data Structures
+//Final Project
+//Plagurism Detector, file compare
+//Description
+//1. Program asks user for the addresses of two files to compare on a local machine.
+//2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.
+//3. Develop a method to compare the two string vectors.
+//4. Display whether the files are different or similar.
+//5. The contents of the vectors could be saved to a file stack and queue(must save data persistently)
+//6. Implement a map to connect files that are the same. (map implementation required)
+//7. Extra Credit : read / write files to / from network.
+//See: Lookup socket library to make web connections. Using network string. Write out using cout, makin request fomr website. Win32 Sockets. 
+#include<iostream>
+#include<fstream>
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <iterator>
+
+using namespace std;
+
+int main() {
+
+	//*****************************************************************************************************************
+	//1. Program asks user for the addresses of two files to compare on a local machine.
+	//2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.
+	//*****************************************************************************************************************
+	
+	/*Iteration v1.0
+	vector<string> output;
+
+	vector<string> output2;
+	
+
+	//read in file 1
+	ifstream file1;
+	file1.open("RickRoll.txt", ios::in | ios::out); //lookup binary file, mode eliminating control chars?
+	
+	//print contents of file until end
+	if (file1.is_open()) {
+		while (!file1.eof()) {
+
+			file1 >> output;
+			cout << output;
+
+		}
+	
+
+	}
+	else
+	{
+		cout << "Error Data Failure!" << endl;
+		return -1;
+	}
+
+	file1.clear();
+	file1.close();
+
+	cout << endl << endl;
+	//now read in file 2 
+	ifstream file2;
+	file2.open("RickRoll2.txt", ios::in | ios::out);
+	if (file2.is_open()) {
+		//print contents of file until end
+		while (!file2.eof()) {
+
+			file2 >> output2;
+			cout << output2;
+
+		}
+	}
+	else
+	{
+		cout << "Error Data Failure!" << endl;
+		return -1;
+	}
+
+	file1.clear();
+	file2.close();
+
+	*/
+
+	//Iteration 1.1
+	//Taken From: http://stackoverflow.com/questions/8365013/reading-line-from-text-file-and-putting-the-strings-into-a-vector
+
+	vector<string> vecFile1;
+	vector<string> vecFile2; 
+
+	ifstream file1("RickRoll.txt");
+	ifstream file2("RickRoll2.txt");
+
+	copy(istream_iterator<string>(file1),
+		istream_iterator<string>(),
+		back_inserter(vecFile1));
+	copy(istream_iterator<string>(file2),
+		istream_iterator<string>(),
+		back_inserter(vecFile2));
+
+	//test contents of vecFile1
+	for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
+	{
+		cout << *i;
+	}
+	
+	cout << endl << endl;
+
+	//test contents of vecFile2
+	for (vector<string> ::const_iterator i = vecFile2.begin(); i != vecFile2.end(); i++)
+	{
+		cout << *i;
+	}
+
+	/*
+	//3. Develop a method to compare the two string vectors.
+	#include <algorithm>
+	#include <string>
+
+	all_of(++(strings.begin()), strings.end(),
+		[&](string a) { return a == strings.front(); })  // All equal
+
+		is_sorted(strings.begin(), strings.end(),
+			[](string a, string b) { return !(b < a); }) )  // Strictly ascending
+	*/
+
+	int x;
+	cin >> x;
+}
