@@ -1,0 +1,108 @@
+//Group: Jesse, Dennis, David
+//CSC-17C Data Structures
+//Final Project
+//Plagurism Detector, file compare
+//Description
+//1. Program asks user for the addresses of two files to compare on a local machine.
+//2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.
+//3. Develop a method to compare the two string vectors.
+//4. Display whether the files are different or similar.
+//5. The contents of the vectors could be saved to a file stack and queue(must save data persistently)
+//6. Implement a map to connect files that are the same. (map implementation required)
+//7. Extra Credit : read / write files to / from network.
+//See: Lookup socket library to make web connections. Using network string. Write out using cout, makin request fomr website. Win32 Sockets. 
+#include<iostream>
+#include<fstream>
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <iterator>
+
+using namespace std;
+
+int main() {
+
+	//*****************************************************************************************************************
+	//1. Program asks user for the addresses of two files to compare on a local machine.
+	//2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.
+	//*****************************************************************************************************************
+	//Taken From: http://stackoverflow.com/questions/8365013/reading-line-from-text-file-and-putting-the-strings-into-a-vector
+
+	//create a vector named vecfile1
+	vector<string> vecFile1;
+	vector<string> vecFile2; 
+
+	//to later be user defined file location
+	ifstream file1("RickRoll.txt");
+	ifstream file2("RickRoll2.txt");
+
+	copy(istream_iterator<string>(file1),
+		istream_iterator<string>(),
+		back_inserter(vecFile1));
+	copy(istream_iterator<string>(file2),
+		istream_iterator<string>(),
+		back_inserter(vecFile2));
+
+	//print the contents of vecFile1 to verify the file was stored in the vector
+	for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
+	{
+		cout << *i;
+	}
+	
+	//formatting
+	cout << endl << endl;
+
+	//print the contents of vecFile2 to verify the file was stored in the vector
+	for (vector<string> ::const_iterator i = vecFile2.begin(); i != vecFile2.end(); i++)
+	{
+		cout << *i;
+	}
+
+	//formatting
+	cout << endl << endl;
+	
+	//*****************************************************************************************************************
+	//3. Develop a method to compare the two string vectors.
+	//4. Display whether the files are different or similar.
+	//*****************************************************************************************************************
+	//Description:
+	//Define criteria for comparisons such as:
+	//Copy a block of text from text file 1
+	//Search file 2 for the copied block of text.
+	//repeat several times
+	//print out information about the comparisons.
+	//this information could include the number of identical characters, file size comparisons, percentage of unique characters, percentage of identical characters
+
+	//Method One: Size of file
+	//The following comparison will measure the size of vecFile1 and vecFile2
+	bool is_equal = false; //used to compare vecFile1 and vecFile2
+	if (vecFile1.size() < vecFile2.size())
+		is_equal = equal(vecFile1.begin(), vecFile1.end(), vecFile2.begin());
+	else
+		is_equal = equal(vecFile2.begin(), vecFile2.end(), vecFile1.begin());
+
+	//print the resulting size comparison
+	if (is_equal = true)
+	{
+		cout << "The files are the same size." << endl;
+	}
+	else if (is_equal = false)
+	{
+		cout << "The files are different sizes." << endl;
+	}
+	
+	//Method Two:
+	//Method Three:
+	//Method Four:
+
+	//*****************************************************************************************************************
+	//5. The contents of the vectors could be saved to a file stack and queue(must save data persistently)
+	//Desctiption
+	//*****************************************************************************************************************
+
+
+
+	//keep the terminal open until enter is pressed
+	int x;
+	cin >> x;
+}
