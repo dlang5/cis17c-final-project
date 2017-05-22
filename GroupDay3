@@ -1,0 +1,198 @@
+	//Group: Jesse, Dennis, David
+	//CSC-17C Data Structures
+	//Final Project
+	//Plagurism Detector, file compare
+	//Description
+	//1. Program asks user for the addresses of two files to compare on a local machine.
+	//2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.
+	//3. Develop a method to compare the two string vectors.
+	//4. Display whether the files are different or similar.
+	//5. The contents of the vectors could be saved to a file stack and queue(must save data persistently)
+	//6. Implement a map to connect files that are the same. (map implementation required)
+	//7. Extra Credit : read / write files to / from network.
+	//See: Lookup socket library to make web connections. Using network string. Write out using cout, makin request fomr website. Win32 Sockets. 
+#include<iostream>
+#include<fstream>
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <iterator>
+#include <queue>
+#include <cassert> // for run time assertions
+
+	using namespace std;
+
+int main() {
+
+	bool exit = false;
+	int option;
+	//
+	//Program Menu
+	//
+
+
+	while (exit != true)
+	{
+		//display menu
+		cout << "Welcome to Plagiarism Detector, a file comparison and analysis tool." << endl;
+		cout << "1. Comparison of two text files on local drive." << endl;
+		cout << "2. Comparison of two files from the internet." << endl;
+		cout << "3. Comparison of two files with internet comparison resource." << endl;
+		cout << "4. Blank space" << endl;
+		cout << "5. Exit Program." << endl;
+		
+		cin >> option;
+
+		if (option == 1)
+		{
+
+		}
+		else if (option == 2)
+		{
+
+		}
+		else if (option == 3)
+		{
+
+		}
+		else if (option == 4)
+		{
+
+		}
+		else if (option == 5)
+		{
+			exit = true;
+		}
+
+		//*****************************************************************************************************************
+		//1. Program asks user for the addresses of two files to compare on a local machine.
+		//2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.
+		//*****************************************************************************************************************
+		//Taken From: http://stackoverflow.com/questions/8365013/reading-line-from-text-file-and-putting-the-strings-into-a-vector
+
+		//create a vector named vecfile1
+		vector<string> vecFile1;
+		vector<string> vecFile2;
+
+		//to later be user defined file location
+		ifstream file1("RickRoll.txt");
+		ifstream file2("RickRoll2.txt");
+
+		copy(istream_iterator<string>(file1),
+			istream_iterator<string>(),
+			back_inserter(vecFile1));
+		copy(istream_iterator<string>(file2),
+			istream_iterator<string>(),
+			back_inserter(vecFile2));
+
+		//print the contents of vecFile1 to verify the file was stored in the vector
+		for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
+		{
+			cout << *i;
+		}
+
+		//formatting
+		cout << endl << endl;
+
+		//print the contents of vecFile2 to verify the file was stored in the vector
+		for (vector<string> ::const_iterator i = vecFile2.begin(); i != vecFile2.end(); i++)
+		{
+			cout << *i;
+		}
+
+		//formatting
+		cout << endl << endl;
+
+		//*****************************************************************************************************************
+		//3. Develop a method to compare the two string vectors.
+		//4. Display whether the files are different or similar.
+		//*****************************************************************************************************************
+		//Description:
+		//Define criteria for comparisons such as:
+		//Copy a block of text from text file 1
+		//Search file 2 for the copied block of text.
+		//repeat several times
+		//print out information about the comparisons.
+		//this information could include the number of identical characters, file size comparisons, percentage of unique characters, percentage of identical characters
+
+		//Method One: Size of file
+		//The following comparison will measure the size of vecFile1 and vecFile2
+		bool is_equal = false; //used to compare vecFile1 and vecFile2
+		if (vecFile1.size() < vecFile2.size())
+			is_equal = equal(vecFile1.begin(), vecFile1.end(), vecFile2.begin());
+		else
+			is_equal = equal(vecFile2.begin(), vecFile2.end(), vecFile1.begin());
+
+		//print the resulting size comparison
+		if (is_equal = true)
+		{
+			cout << "The files are the same size." << endl;
+		}
+		else if (is_equal = false)
+		{
+			cout << "The files are different sizes." << endl;
+		}
+
+		//Method Two: Comparing Begining Middle and end
+		//Description: Use vector member functions to copy different portions of two text files and ocmpare them. 
+
+		//Method Three: Use third-party library "diff.c"
+		//Open source library to compare files. 
+
+		//Method Four:
+
+		//*****************************************************************************************************************
+		//5. The contents of the vectors could be saved to a file stack and queue(must save data persistently)
+		// Queue Description: Save a record of each address being input 
+
+		//*****************************************************************************************************************
+
+		// generic queue template
+
+		queue<int> q;
+		assert(q.empty());        // initially the queue is empty
+
+		q.push(1);                  // add an element
+		assert(!q.empty());       // now the queue isn't empty any more
+		assert(q.front() == 1);   // the first element is, of course, 1
+
+		q.push(2);                  // add another element
+		assert(!q.empty());       // it's of course not empty again
+		assert(q.front() == 1);   // the first element didn't change
+
+		q.push(3);                  // add yet an other element
+		assert(!q.empty());       // the queue is still not empty
+		assert(q.front() == 1);   // and the first element is still 1
+
+		q.pop();                    // remove the first element
+		assert(!q.empty());       // the queue is not yet empty
+		assert(q.front() == 2);    // the first element is now 2 (the 1 is gone)
+
+		q.pop();
+		assert(!q.empty());
+		assert(q.front() == 3);
+
+		q.push(4);
+		assert(!q.empty());
+		assert(q.front() == 3);
+
+		q.pop();
+		assert(!q.empty());
+		assert(q.front() == 4);
+
+		q.pop();
+		assert(q.empty());
+
+		q.push(5);
+		assert(!q.empty());
+		assert(q.front() == 5);
+
+		q.pop();
+		assert(q.empty());
+
+	}
+
+	//keep the terminal open until enter is pressed
+	int x;
+	cin >> x;
+}
