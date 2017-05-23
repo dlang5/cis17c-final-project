@@ -24,12 +24,10 @@
 
 int main() {
 
+	//run program until exit is selected
 	bool exit = false;
+	//variable for user menu selection
 	int option;
-	//
-	//Program Menu
-	//
-
 
 	while (exit != true)
 	{
@@ -38,13 +36,71 @@ int main() {
 		cout << "1. Comparison of two text files on local drive." << endl;
 		cout << "2. Comparison of two files from the internet." << endl;
 		cout << "3. Comparison of two files with internet comparison resource." << endl;
-		cout << "4. Blank space" << endl;
-		cout << "5. Exit Program." << endl;
+		cout << "4. View Search History" << endl;
+		cout << "5. Delete Search History" << endl;
+		cout << "6. Exit Program." << endl;
 		
 		cin >> option;
 
 		if (option == 1)
 		{
+			vector<string> vecFile1;
+			vector<string> vecFile2;
+			//variable used to point ifstream to the address of the file
+			string path1;
+			string path2;
+
+			cout << "Note: Include file extension type for path entry"<< endl;
+			cout << "Please enter the address of the first file:" << endl;
+			cin >> path1;
+			cout << "Please enter the address of the second file:" << endl;
+			cin >> path2;
+
+			//now plug path 1 and path 2 into the ifstream to be read into our vectors. 
+			ifstream file1(path1);
+			ifstream file2(path2);
+			//copy the two file contents to two vectors
+			copy(istream_iterator<string>(file1),
+				istream_iterator<string>(),
+				back_inserter(vecFile1));
+			copy(istream_iterator<string>(file2),
+				istream_iterator<string>(),
+				back_inserter(vecFile2));
+			//print the contents of the vectors so we know something was stored there
+
+			cout << "The contents of the first file: " << endl;
+			for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
+			{
+				cout << *i;
+			}
+
+			//formatting
+			cout << endl << endl;
+
+			cout << "The contents of the second file: " << endl;
+			for (vector<string> ::const_iterator i = vecFile2.begin(); i != vecFile2.end(); i++)
+			{
+				cout << *i;
+			}
+
+			//formatting
+			cout << endl << endl;
+
+			//we need to save a search history so we use a queue to do so
+			queue<string> searchHistory;
+			searchHistory.push(path1);
+			searchHistory.push(path2);
+
+			//prove something has been saved to the queue
+
+			//loop to print  while there is a seach history
+
+			while (!searchHistory.empty())
+			{
+				cout << "Here is your Search History:" << endl;
+				cout << searchHistory.front() << endl;
+				searchHistory.pop();
+			}
 
 		}
 		else if (option == 2)
@@ -61,6 +117,7 @@ int main() {
 		}
 		else if (option == 5)
 		{
+			//exit program
 			exit = true;
 		}
 
