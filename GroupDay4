@@ -1,0 +1,232 @@
+	//Group: Jesse, Dennis, David
+	//CSC-17C Data Structures
+	//Final Project
+	//Plagurism Detector, file compare
+	//Description
+	//1. Program asks user for the addresses of two files to compare on a local machine.
+	//2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.
+	//3. Develop a method to compare the two string vectors.
+	//4. Display whether the files are different or similar.
+	//5. The contents of the vectors could be saved to a file stack and queue(must save data persistently)
+	//6. Implement a map to connect files that are the same. (map implementation required)
+	//7. Extra Credit : read / write files to / from network.
+	//See: Lookup socket library to make web connections. Using network string. Write out using cout, makin request fomr website. Win32 Sockets. 
+
+//used for path entry into terminal
+//   C:\Users\ncc\Desktop\rickroll.txt
+//   C:\Users\ncc\Desktop\rickroll2.txt
+
+#include<iostream>
+#include<fstream>
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <iterator>
+#include <queue>
+#include <cassert> // for run time assertions
+#include <iomanip> //used for menu formatting
+using namespace std; //we should use "std::" for everything that needs it, and remove "using namespace std;"
+
+int main() 
+{
+
+	//*******************************************************************************************************************
+	// Globals
+	//*******************************************************************************************************************
+	bool exit = false;			 //run program until exit is selected
+	int option;					 //variable for user menu selection
+	int identical = 0;			 //used to count the number of identical characters
+	int unique = 0;				 //used to count the number of unique characters
+	vector<string> vecFile1;	 //file 1 will be copied to this vector
+	vector<string> vecFile2;	 //file 2 will be copied to this vector
+	queue<string> searchHistory; //we need to save a search history so we use a queue to do so
+	string path1;				 //variable used to point ifstream to the address of the file
+	string path2;		         //variable used to point ifstream to the address of the file
+	//*******************************************************************************************************************
+
+	while (exit != true)
+	{
+		//display menu
+		cout << endl;
+		cout << "Welcome to Plagiarism Detector, a file comparison and analysis tool." << endl;
+		cout << "1. Comparison of two text files on local drive." << endl;
+		cout << "2. Comparison of two files from the internet. NYI" << endl;
+		cout << "3. Comparison of two files with internet comparison resource. NYI" << endl;
+		cout << "4. View Comparison History" << endl;
+		cout << "5. Delete Search History" << endl;
+		cout << "6. Exit Program." << endl;
+
+		cin >> option; //capture user's menu selection
+
+//*******************************************************************************************************************
+// 1. Local Drive File Comparison
+// Description:
+// 1.1 Prompt the user for the local path of two files to be compared. 
+// 1.2 User input will be in the format "C:\Users\ncc\Desktop\RickRoll.txt" excluding the quotations, for example. 
+// 1.3 The files are then copied into two vectors so they may be manipulated by vector member functions. 
+// 1.4 The contents of each vector is printed to show something was stored there. 
+//*******************************************************************************************************************
+		if (option == 1)
+		{
+
+			//1.1 prompt user for file locations
+			cout << "Note: Include file extension type for path entry" << endl;
+			cout << "Please enter the address of the first file:" << endl;
+			cin >> path1;
+			cout << "Please enter the address of the second file:" << endl;
+			cin >> path2;
+
+			//point ifstream to the user-defined file location
+			ifstream file1(path1);
+			ifstream file2(path2);
+
+			//add the user define file pathways to our queue
+			searchHistory.push(path1);
+			searchHistory.push(path2);
+
+			//1.3 copy the two file contents to two vectors
+			copy(istream_iterator<string>(file1),
+				istream_iterator<string>(),
+				back_inserter(vecFile1));
+			copy(istream_iterator<string>(file2),
+				istream_iterator<string>(),
+				back_inserter(vecFile2));
+
+			//1.4 print the contents of the vectors so we know something was stored there
+
+			cout << "The contents of the first file: " << endl;
+			for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
+			{
+				cout << *i;
+			}
+			cout << endl << endl;
+			cout << "The contents of the second file: " << endl;
+			for (vector<string> ::const_iterator i = vecFile2.begin(); i != vecFile2.end(); i++)
+			{
+				cout << *i;
+			}
+			cout << endl << endl;
+
+		}
+
+		else if (option == 2)
+		{
+			
+		}
+
+		else if (option == 3)
+		{
+
+		}
+
+		else if (option == 4)
+		{
+
+		}
+
+		//*******************************************************************************************************************
+		// Delete Search History
+		// Description:
+		// If option 5 is selected in the menu, delete the two user-defined file pathways.
+		// We accomplish this by popping (deleting) the top of the queue until it no longer has any contents. 
+		//*******************************************************************************************************************
+		else if (option == 5)
+		{
+			while (!searchHistory.empty())
+			{
+				cout << "The following records will be removed:" << endl;
+				cout << searchHistory.front() << endl;
+				searchHistory.pop();
+			}
+		}
+
+		//*******************************************************************************************************************
+		// Exit Program
+		// Description:
+		// Close the terminal if user has selected menu option 6. 
+		// We accomplish this with a while-loop that will terminate when a bool for exit has been changed to true.
+		//*******************************************************************************************************************
+
+		else if (option == 6)
+		{
+			exit = true;
+		}
+
+		//*****************************************************************************************************************
+		//2.0 Develop a robust engine to compare the contents of two text files.
+		//    This will be the heart of this program so we will need to implement many methods for our analysis to be 
+		//    comprehensive. 
+		//2.1 Size of File
+		//2.2 Comparing Begining Middle and end
+		//2.3 Use third-party library "diff.c"
+		//2.4 Character Comparison
+		//2.5 string compare
+		//*****************************************************************************************************************
+		// Description:
+		// Define criteria for comparisons such as:
+		// Copy a block of text from text file 1
+		// Search file 2 for the copied block of text.
+		// repeat several times
+		// print out information about the comparisons.
+		// this information could include the number of identical characters, file size comparisons, percentage of unique characters, percentage of identical characters
+		
+		cout << "~FILE COMPARISON RESULTS~" << endl << endl;
+		cout << setw(10);
+
+		//2.1 Size of file
+		//The following comparison will measure the size of vecFile1 and vecFile2
+		bool is_equal = false; //used to compare vecFile1 and vecFile2
+		if (vecFile1.size() < vecFile2.size())
+			is_equal = equal(vecFile1.begin(), vecFile1.end(), vecFile2.begin());
+		else
+			is_equal = equal(vecFile2.begin(), vecFile2.end(), vecFile1.begin());
+
+		//print the resulting size comparison
+		if (is_equal = true)
+		{
+			cout << "The files are the same size." << endl;
+		}
+		else if (is_equal = false)
+		{
+			cout << "The files are different sizes." << endl;
+		}
+
+		//2.2 Comparing Begining Middle and end
+		//Description: Use vector member functions to copy different portions of two text files and ocmpare them. 
+
+		//2.3 Use third-party library "diff.c"
+		//Open source library to compare files. 
+
+		//2.4 Character Comparison
+		//Description we count the number of each unique and identical character in each file. 
+		//BROKEN IN CURRENT STATE
+		for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
+		{
+			for (vector<string> ::const_iterator j = vecFile2.begin(); j != vecFile2.end(); j++)
+			{
+				if (*i == *j)
+				{
+					identical++;
+				}
+				else if (*i != *j)
+				{
+					unique++;
+				}
+			}
+
+		}
+
+		cout << "A character comparison of the files has shown there to be " << identical << " identical characters" << endl;
+		cout << "A character comparison of the files has shown there to be " << unique << " unique characters" << endl;
+
+		//2.5 string compare
+	//	if(vecFile1.compare(vecFile2) !=0)
+
+	}//menu while-loop closing bracket
+
+	
+
+	//keep the terminal open until enter is pressed
+	int x;
+	cin >> x;
+}
