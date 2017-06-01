@@ -1,7 +1,7 @@
 //Group: Jesse, Dennis, David
 //CSC-17C Data Structures
 //Final Project
-//Plagurism Detector, file compare
+//Plagiarism Detector, file compare
 //Description
 //1. Program asks user for the addresses of two files to compare on a local machine.
 //2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.
@@ -201,6 +201,10 @@ else if (option == 4)
 //*****************************************************************************************************************
 //2.3 Use third-party library "regex"
 //Regex is a c++v.11 library that can be used to compare text.
+//A regular expression, regex or regexp[1] (sometimes called a rational expression) is, in theoretical 
+//computer science and formal language theory, a sequence of characters that define a search pattern. 
+//Usually this pattern is then used by string searching algorithms for "find" or "find and replace" operations 
+//on strings.
 //regex101.com for quick refrence
 //*****************************************************************************************************************
 	for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
@@ -225,10 +229,13 @@ else if (option == 4)
 		{
 			cout << "Regex has determined the files to be unique." << endl;
 		}
+//try
+//bool match=regex_match(cmp1, e)
+		
 
 //*****************************************************************************************************************
 //2.4 Word Comparison
-//Description we count the number of each unique and identical words in each file. 
+//Description: We count the number of each unique and identical chars in each file. 
 //BROKEN IN CURRENT STATE???
 //*****************************************************************************************************************
 	for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
@@ -248,9 +255,9 @@ else if (option == 4)
 	}
 
 	cout << endl << endl;
-	cout << "3. Word Comparison" << endl;
-	cout << "A comparison of the files has shown there to be " << identical << " identical words" << endl;
-	cout << "A comparison of the files has shown there to be " << unique << " unique words" << endl;
+	cout << "3. Char Comparison" << endl;
+	cout << "A comparison of the files has shown there to be " << identical << " identical chars" << endl;
+	cout << "A comparison of the files has shown there to be " << unique << " unique chars" << endl;
 	cout << endl << "~END OF SUMMARY~" << endl << endl;
 
 //*****************************************************************************************************************
