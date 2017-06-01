@@ -170,7 +170,7 @@ else if (option == 4)
 
 //*****************************************************************************************************************
 //2.1 Size of file
-//The following comparison will measure the size of vecFile1 and vecFile2
+//The following will compare the size of vecFile1 and vecFile2
 //*****************************************************************************************************************
 	bool is_equal = false; //used to compare vecFile1 and vecFile2
 	if (vecFile1.size() < vecFile2.size())
@@ -194,7 +194,7 @@ else if (option == 4)
 
 //*****************************************************************************************************************
 //2.2 Comparing Begining Middle and end
-//Description: Use vector member functions to copy different portions of two text files and ocmpare them. 
+//Description: Use vector member functions to copy different portions of two text files and compare them. 
 //*****************************************************************************************************************
 //not yet implemented
 
@@ -230,8 +230,8 @@ else if (option == 4)
 			cout << "Regex has determined the files to be unique." << endl;
 		}
 //try
-//bool match=regex_match(cmp1, e)
-		
+//bool match=regex_match(cmp1, e);
+//cout<<(match? "Matched" : "Not Matched") << endl << endl;
 
 //*****************************************************************************************************************
 //2.4 Word Comparison
