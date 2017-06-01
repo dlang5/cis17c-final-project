@@ -65,7 +65,6 @@ cin >> option; //capture user's menu selection
 // 1.1 Prompt the user for the local path of two files to be compared. 
 // 1.2 User input will be in the format "C:\Users\ncc\Desktop\RickRoll.txt" excluding the quotations, for example. 
 // 1.3 The files are then copied into two vectors so they may be manipulated by vector member functions. 
-// 1.4 The contents of each vector is printed to show something was stored there. 
 //*******************************************************************************************************************
 if (option == 1)
 {
@@ -92,8 +91,6 @@ if (option == 1)
 	copy(istream_iterator<string>(file2),
 		istream_iterator<string>(),
 		back_inserter(vecFile2));
-
-	//1.4 print the contents of the vectors so we know something was stored there
 
 	cout << endl << endl;
 
