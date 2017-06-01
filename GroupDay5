@@ -200,7 +200,7 @@ else if (option == 4)
 
 //*****************************************************************************************************************
 //2.3 Use third-party library "regex"
-//Regex is a c++v.11 library that can be used to compare text.
+//Regex is a c++v.11 library that can be used to compare strings via Regular Expressions.
 //A regular expression, regex or regexp[1] (sometimes called a rational expression) is, in theoretical 
 //computer science and formal language theory, a sequence of characters that define a search pattern. 
 //Usually this pattern is then used by string searching algorithms for "find" or "find and replace" operations 
