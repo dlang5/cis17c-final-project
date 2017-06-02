@@ -231,7 +231,7 @@ else if (option == 4)
 		}
 //try
 //bool match=regex_match(cmp1, e);
-//cout<<(match? "Matched" : "Not Matched") << endl << endl;
+//cout<<(match? "Match Found" : "Regex has determined the files are unique.") << endl << endl;
 
 //*****************************************************************************************************************
 //2.4 Word Comparison
