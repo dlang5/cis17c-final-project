@@ -1,15 +1,21 @@
-//Group: Jesse, Dennis, David
-//CSC-17C Data Structures
-//Final Project
-//Plagiarism Detector, file compare
-//Description
-//1. Program asks user for the addresses of two files to compare on a local machine.
-//2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.
-//3. Develop a method to compare the two string vectors.
-//4. Display whether the files are different or similar.
-//5. The contents of the vectors could be saved to a file stack and queue(must save data persistently)
-//6. Implement a map to connect files that are the same. (map implementation required)
-//7. Extra Credit : read / write files to / from network.
+//*******************************************************************************************************************
+// File Comparison Utility																							*
+//*******************************************************************************************************************
+// Group: Jesse, Dennis, David																						*
+// CSC-17C Data Structures																							*
+// Final Project																									*
+// Plagiarism Detector, File Comparison Utility																		*
+// Project Github: https://github.com/dlang5/cis17c-final-project													*
+//
+// Description:																										*
+// 1. Program asks user for the addresses of two files to compare on a local machine.								*			
+// 2. Once the addresses of the two files are known, they are read into two string vector arrays for comparison.    *
+// 3. Develop a method to compare the two string vectors.															*
+// 4. Display whether the files are different or similar.															*
+// 5. The contents of the vectors could be saved to a file stack and queue(must save data persistently)				*
+// 6. Implement a map to connect files that are the same. (map implementation required)								*
+// 7. Extra Credit : read / write files to / from network.															*
+//*******************************************************************************************************************
 
 //quick copy/paste for terminal
 //C:\Users\ncc\Desktop\1.txt
@@ -30,21 +36,21 @@ int main()
 {
 
 //*******************************************************************************************************************
-// Globals
+// Globals																											*
 //*******************************************************************************************************************
-bool exit = false;			 //run program until exit is selected
-int option;					 //variable for user menu selection
-int identical = 0;			 //used to count the number of identical characters
-int unique = 0;				 //used to count the number of unique characters
-vector<string> vecFile1;	 //file 1 will be copied to this vector
-vector<string> vecFile2;	 //file 2 will be copied to this vector
-queue<string> searchHistory; //we need to save a search history so we use a queue to do so
-stack<string> prgmCount;     //stack used to print comparison history in the order it was received
-stack<string> stackPreserve; //store the contents of prgrmCount so prgmCount can be printed with pop()
-string path1;				 //variable used to point ifstream to the address of the file
-string path2;		         //variable used to point ifstream to the address of the file
-string cmp1;				 //first string to compare
-string cmp2;	             //first string to compare
+bool exit = false;			 //run program until exit is selected													*
+int option;					 //variable for user menu selection														*
+int identical = 0;			 //used to count the number of identical characters										*
+int unique = 0;				 //used to count the number of unique characters										*
+vector<string> vecFile1;	 //file 1 will be copied to this vector													*
+vector<string> vecFile2;	 //file 2 will be copied to this vector													*
+queue<string> searchHistory; //we need to save a search history so we use a queue to do so							*
+stack<string> prgmCount;     //stack used to print comparison history in the order it was received					*
+stack<string> stackPreserve; //store the contents of prgrmCount so prgmCount can be printed with pop()				*
+string path1;				 //variable used to point ifstream to the address of the file							*
+string path2;		         //variable used to point ifstream to the address of the file							*
+string cmp1;				 //first string to compare																*
+string cmp2;	             //first string to compare																*
 //*******************************************************************************************************************
 
 while (exit != true)
@@ -53,8 +59,8 @@ while (exit != true)
 cout << endl;
 cout << "Welcome to Plagiarism Detector, a file comparison and analysis tool." << endl;
 cout << "1. Comparison of two text files on local drive." << endl;
-cout << "2. Comparison of two files from the internet. -Coming Soon" << endl;
-cout << "3. Comparison of two files with internet comparison resource. -Coming soon" << endl;
+cout << "2. Comparison of strings from webpages. (Ex. Compare and contrast Foxnews.com with DemocracyNow.org) -Coming Soon" << endl;
+cout << "3. Comparison of two files with internet resource. (Ex. use an API for comparisons) -Coming soon" << endl;
 cout << "4. View Comparison History" << endl;
 cout << "5. Delete Search History" << endl;
 cout << "6. Exit Program." << endl;
@@ -62,11 +68,11 @@ cout << "6. Exit Program." << endl;
 cin >> option; //capture user's menu selection
 
 //*******************************************************************************************************************
-// 1. Local Drive File Comparison
-// Description:
-// 1.1 Prompt the user for the local path of two files to be compared. 
-// 1.2 User input will be in the format "C:\Users\ncc\Desktop\RickRoll.txt" excluding the quotations, for example. 
-// 1.3 The files are then copied into two vectors so they may be manipulated by vector member functions. 
+// 1. Local Drive File Comparison																					*
+// Description:																										*
+// 1.1 Prompt the user for the local path of two files to be compared.												*
+// 1.2 User input will be in the format "C:\Users\ncc\Desktop\RickRoll.txt" excluding the quotations, for example.	* 
+// 1.3 The files are then copied into two vectors so they may be manipulated by vector member functions.			*
 //*******************************************************************************************************************
 if (option == 1)
 {
@@ -105,14 +111,14 @@ copy(istream_iterator<string>(file2),
 cout << endl << endl;
 
 //*****************************************************************************************************************
-// 2.0 Develop a robust engine to compare the contents of two text files.
-//    This will be the heart of this program so we will need to implement many methods for our analysis to be 
-//    comprehensive. 
-// 2.1 Size of File
-// 2.2 Comparing Begining Middle and end
-// 2.3 Use third-party library "regex"
-// 2.4 Character Comparison
-// 2.5 string compare
+// 2.0 Develop a robust engine to compare the contents of two text files.										  *
+//    This will be the heart of this program so we will need to implement many methods for our analysis to be	  *
+//    comprehensive.																							  *
+// 2.1 Size of File																								  *
+// 2.2 Comparing Begining Middle and end																		  *
+// 2.3 Use third-party library "regex"																			  *
+// 2.4 Character Comparison																						  *
+// 2.5 string compare																							  *
 //*****************************************************************************************************************
 cout << "~FILE COMPARISON SUMMARY~" << endl << endl;
 
@@ -135,8 +141,8 @@ for (vector<string> ::const_iterator i = vecFile2.begin(); i != vecFile2.end(); 
 cout << endl << endl;
 
 //*****************************************************************************************************************
-// 2.1 Size of file
-// The following will compare the size of vecFile1 and vecFile2
+// 2.1 Size of file																								  *
+// The following will compare the size of vecFile1 and vecFile2													  *
 //*****************************************************************************************************************
 bool is_equal = false; //used to compare vecFile1 and vecFile2
 if (vecFile1.size() < vecFile2.size())
@@ -159,19 +165,20 @@ else if (is_equal = false)
 }
 
 //*****************************************************************************************************************
-// 2.2 Comparing Begining Middle and End
-// Description: Use vector member functions to copy different portions of two text files and compare them. 
+// 2.2 Comparing Begining Middle and End																		  *
+// Description:																									  * 
+// Use vector member functions to copy different portions of two text files and compare them.					  *
 //*****************************************************************************************************************
 //not yet implemented
 
 //*****************************************************************************************************************
-// 2.3 Use third-party library "regex"
-// Regex is a c++v.11 library that can be used to compare strings via Regular Expressions.
-// A regular expression, regex or regexp[1] (sometimes called a rational expression) is, in theoretical 
-// computer science and formal language theory, a sequence of characters that define a search pattern. 
-// Usually this pattern is then used by string searching algorithms for "find" or "find and replace" operations 
-// on strings.
-// regex101.com for quick refrence
+// 2.3 Use third-party library "regex"																			  *
+// Regex is a c++v.11 library that can be used to compare strings via Regular Expressions.						  *
+// A regular expression, regex or regexp[1] (sometimes called a rational expression) is, in theoretical			  *
+// computer science and formal language theory, a sequence of characters that define a search pattern.			  *
+// Usually this pattern is then used by string searching algorithms for "find" or "find and replace" operations	  *
+// on strings.																									  *
+// regex101.com for quick refrence																				  *
 //*****************************************************************************************************************
 for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
 {
@@ -191,37 +198,37 @@ bool match = regex_match(cmp1, e);
 cout << (match ? "Match Found" : "Regex has determined the files are unique.") << endl << endl;
 
 //now do the same comparison but ignore case
-	if(true)
+if (true)
 {
-		cout << "A comparison ignoring case has ";
+	cout << "A comparison ignoring case has: ";
 	regex e(cmp2, regex_constants::icase); //any character except newline
 	bool match = regex_match(cmp1, e);
 	cout << (match ? "Matched" : "Not matched") << endl << endl;
 }
 
 //*****************************************************************************************************************
-// 2.4 Char Comparison
-// Description: We count the number of each unique and identical chars in each file with respect to the elements
-// of each string.
-// For example, if the character sroted in string1 elment [0] is the same as string2 element[0] the counter for
-// identical characters would be increment by one. 
-// We will then print a percentage of identical and unique character elements with respect to teh two strings. 
-// BROKEN IN CURRENT STATE
+// 2.4 Char Comparison																							  *
+// Description: We count the number of each unique and identical chars in each file with respect to the elements  *
+// of each string.																								  *
+// For example, if the character sroted in string1 elment [0] is the same as string2 element[0] the counter for   *
+// identical characters would be increment by one.																  *
+// We will then print a percentage of identical and unique character elements with respect to teh two strings.    *
+// BROKEN IN CURRENT STATE																						  *
 //*****************************************************************************************************************
 /*
-	for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
+for (vector<string> ::const_iterator i = vecFile1.begin(); i != vecFile1.end(); i++)
 {
-	for (vector<string> ::const_iterator j = vecFile2.begin(); j != vecFile2.end(); j++)
-	{
-		if (*i == *j)
-		{
-			identical++;
-		}
-		else if (*i != *j)
-		{
-			unique++;
-		}
-	}
+for (vector<string> ::const_iterator j = vecFile2.begin(); j != vecFile2.end(); j++)
+{
+if (*i == *j)
+{
+identical++;
+}
+else if (*i != *j)
+{
+unique++;
+}
+}
 
 }
 
@@ -231,11 +238,11 @@ cout << "A comparison of the files has shown there to be " << identical << " ide
 cout << "A comparison of the files has shown there to be " << unique << " unique chars" << endl;
 */
 
-		
+
 
 //*****************************************************************************************************************
-// 2.5 string compare
-// if(vecFile1.compare(vecFile2) !=0)
+// 2.5 string compare																							  *
+// if(vecFile1.compare(vecFile2) !=0)																			  *
 //*****************************************************************************************************************
 //not yet implemented
 
@@ -254,15 +261,15 @@ else if (option == 3)
 }
 
 //*******************************************************************************************************************
-// View Search History
-// Description:
-// If option 4 is selected in the menu, display the file comparisons in the order they were received (FIFO)
-// We accomplish this with <stack> library. 
+// View Search History																								*
+// Description:																										*
+// If option 4 is selected in the menu, display the file comparisons in the order they were received (FIFO)			*
+// We accomplish this with <stack> library.																			*
 //*******************************************************************************************************************
 else if (option == 4)
 {
 	cout << "The following files were compared in the order they appear:" << endl;
-	if(!prgmCount.empty())
+	if (!prgmCount.empty())
 	{
 		//save the top item of the prgmCount to preserve the stack
 		stackPreserve.push(prgmCount.top());
@@ -283,27 +290,34 @@ else if (option == 4)
 }
 
 //*******************************************************************************************************************
-// Delete Search History
-// Description:
-// If option 5 is selected in the menu, delete the two user-defined file pathways.
-// We accomplish this by popping (deleting) the top of the queue until it no longer has any contents via the <queue>
-// library. 
+// Delete Search History																							*
+// Description:																										*
+// If option 5 is selected in the menu, delete the two user-defined file pathways.									*
+// We accomplish this by popping (deleting) the top of the queue until it no longer has any contents via the		*
+// <queue> library.																								* 
 //*******************************************************************************************************************
 else if (option == 5)
 {
 	while (!searchHistory.empty())
 	{
-		cout << "The following records will be removed:" << endl;
+		cout << "The following record will be removed:" << endl;
 		cout << searchHistory.front() << endl;
 		searchHistory.pop();
+	}
+	while (searchHistory.empty())
+	{
+		stackPreserve.pop();
+		stackPreserve.pop();
+		prgmCount.pop();
+		prgmCount.pop();
 	}
 }
 
 //*******************************************************************************************************************
-// Exit Program
-// Description:
-// Close the terminal if user has selected menu option 6. 
-// We accomplish this with a while-loop that will terminate when a bool for exit has been changed to true.
+// Exit Program																										*
+// Description:																										*
+// Close the terminal if user has selected menu option 6.															*
+// We accomplish this with a while-loop that will terminate when a bool for exit has been changed to true.			*
 //*******************************************************************************************************************
 else if (option == 6)
 {
