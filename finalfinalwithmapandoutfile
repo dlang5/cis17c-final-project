@@ -13,7 +13,7 @@
 // 3. Develop a method to compare the two string vectors.															*
 // 4. Display whether the files are different or similar.															*
 // 5. The contents of the vectors could be saved to a file stack and queue(must save data persistently)				*
-// 6. Implement a map to connect files that are the same. (map implementation required)								*
+// 6. Implement a map to link users to their file comparisons. (map implementation required)								*
 // 7. Extra Credit : read / write files to / from network.															*
 //*******************************************************************************************************************
 
